@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos de Estudiantes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .copy-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Datos de Estudiantes - Encuesta Tecnología Educativa</h1>
+    
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Estudiante</th>
+                <th>Calificación en matemáticas (categoría)</th>
+                <th>Horas semanales de estudio con tecnología</th>
+                <th>Usa apps/plataformas educativas</th>
+                <th>Frecuencia de videos educativos</th>
+                <th>Dispositivo más usado para estudiar</th>
+                <th>¿La tecnología te ayuda a entender? (1-5)</th>
+                <th>¿Crees más uso de tecnología en clase?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>estudiante 1</td><td>10-15</td><td>4.6</td><td>Si</td><td>Nunca</td><td>Celular</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 2</td><td>15-20</td><td>4.6</td><td>No</td><td>Nunca</td><td>Celular</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 3</td><td>15-20</td><td>4.6</td><td>Si</td><td>Frecuentemente</td><td>Tablet</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 4</td><td>10-15</td><td>2.4</td><td>No</td><td>A veces</td><td>Celular</td><td>3</td><td>Si</td></tr>
+            <tr><td>estudiante 5</td><td>5-10</td><td>0.2</td><td>No</td><td>Frecuentemente</td><td>Laptop</td><td>5</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 6</td><td>5-10</td><td>2.4</td><td>Si</td><td>Siempre</td><td>Laptop</td><td>3</td><td>Si</td></tr>
+            <tr><td>estudiante 7</td><td>5-10</td><td>2.4</td><td>Si</td><td>A veces</td><td>Celular</td><td>4</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 8</td><td>15-20</td><td>0.2</td><td>No</td><td>A veces</td><td>Ninguno</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 9</td><td>10-15</td><td>2.4</td><td>No</td><td>Frecuentemente</td><td>Ninguno</td><td>3</td><td>No</td></tr>
+            <tr><td>estudiante 10</td><td>15-20</td><td>0.2</td><td>No</td><td>A veces</td><td>Celular</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 11</td><td>0-5</td><td>4.6</td><td>No</td><td>Nunca</td><td>Celular</td><td>3</td><td>Si</td></tr>
+            <tr><td>estudiante 12</td><td>15-20</td><td>2.4</td><td>Si</td><td>A veces</td><td>Celular</td><td>2</td><td>Si</td></tr>
+            <tr><td>estudiante 13</td><td>15-20</td><td>2.4</td><td>Si</td><td>A veces</td><td>Tablet</td><td>3</td><td>Si</td></tr>
+            <tr><td>estudiante 14</td><td>5-10</td><td>2.4</td><td>Si</td><td>Siempre</td><td>Celular</td><td>3</td><td>No</td></tr>
+            <tr><td>estudiante 15</td><td>15-20</td><td>2.4</td><td>No</td><td>Siempre</td><td>Laptop</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 16</td><td>5-10</td><td>2.4</td><td>Si</td><td>Frecuentemente</td><td>Laptop</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 17</td><td>10-15</td><td>0.2</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 18</td><td>10-15</td><td>4.6</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 19</td><td>10-15</td><td>4.6</td><td>Si</td><td>A veces</td><td>Tablet</td><td>2</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 20</td><td>10-15</td><td>4.6</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 21</td><td>10-15</td><td>4.6</td><td>No</td><td>Frecuentemente</td><td>Celular</td><td>3</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 22</td><td>5-10</td><td>2.4</td><td>Si</td><td>Siempre</td><td>Celular</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 23</td><td>10-15</td><td>4.6</td><td>No</td><td>Siempre</td><td>Ninguno</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 24</td><td>10-15</td><td>0.2</td><td>Si</td><td>A veces</td><td>Celular</td><td>1</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 25</td><td>10-15</td><td>0.2</td><td>Si</td><td>A veces</td><td>Laptop</td><td>2</td><td>Si</td></tr>
+            <tr><td>estudiante 26</td><td>15-20</td><td>0.2</td><td>No</td><td>A veces</td><td>Laptop</td><td>2</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 27</td><td>5-10</td><td>2.4</td><td>No</td><td>A veces</td><td>Celular</td><td>3</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 28</td><td>10-15</td><td>2.4</td><td>Si</td><td>Siempre</td><td>Laptop</td><td>4</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 29</td><td>10-15</td><td>2.4</td><td>No</td><td>Siempre</td><td>Celular</td><td>2</td><td>Si</td></tr>
+            <tr><td>estudiante 30</td><td>10-15</td><td>4.6</td><td>Si</td><td>Nunca</td><td>Laptop</td><td>2</td><td>Si</td></tr>
+            <tr><td>estudiante 31</td><td>5-10</td><td>2.4</td><td>Si</td><td>Frecuentemente</td><td>Laptop</td><td>4</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 32</td><td>5-10</td><td>2.4</td><td>Si</td><td>A veces</td><td>Laptop</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 33</td><td>5-10</td><td>2.4</td><td>Si</td><td>A veces</td><td>Laptop</td><td>1</td><td>Si</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        function copyTable() {
+            const table = document.getElementById('dataTable');
+            let text = '';
+            
+            // Copiar encabezados
+            const headers = table.querySelectorAll('th');
+            const headerTexts = Array.from(headers).map(th => th.textContent);
+            text += headerTexts.join('\t') + '\n';
+            
+            // Copiar filas de datos
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const rowTexts = Array.from(cells).map(td => td.textContent);
+                text += rowTexts.join('\t') + '\n';
+            });
+            
+            // Copiar al portapapeles
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ ¡Copiado! Ahora pégalo en Excel';
+                btn.style.backgroundColor = '#28a745';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '#4CAF50';
+                }, 3000);
+            }).catch(err => {
+                alert('Error al copiar. Intenta seleccionar manualmente la tabla y copiar con Ctrl+C');
+            });
+        }
+    </script>
+</body>
+</html>
