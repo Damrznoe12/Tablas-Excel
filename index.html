@@ -3,445 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis Wilcoxon-Mann-Whitney - Institución Educativa "Nuestra Señora de Fátima"</title>
+    <title>Datos de Estudiantes</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
         }
-        
-        .container {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.2em;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border: 2px solid #e3f2fd;
-            border-radius: 10px;
-            background: #f8f9ff;
-        }
-        
-        .section h2 {
-            color: #1565c0;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .icon {
-            width: 24px;
-            height: 24px;
-            background: #1565c0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        
         table {
-            width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        
         th, td {
-            padding: 12px;
-            text-align: center;
             border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
-        
         th {
-            background: #1565c0;
+            background-color: #4CAF50;
             color: white;
             font-weight: bold;
+            position: sticky;
+            top: 0;
         }
-        
         tr:nth-child(even) {
-            background-color: #f8f9fa;
+            background-color: #f9f9f9;
         }
-        
         tr:hover {
-            background-color: #e3f2fd;
+            background-color: #f5f5f5;
         }
-        
-        .grupo-alto {
-            background-color: #e8f5e8 !important;
-            font-weight: bold;
-        }
-        
-        .grupo-bajo {
-            background-color: #fff3e0 !important;
-            font-weight: bold;
-        }
-        
-        .btn {
-            background: linear-gradient(45deg, #4caf50, #45a049);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            margin: 10px 5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
-        }
-        
-        .btn-secondary {
-            background: linear-gradient(45deg, #2196f3, #1976d2);
-            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
-        }
-        
-        .btn-secondary:hover {
-            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
-        }
-        
-        .download-section {
+        .title {
             text-align: center;
-            padding: 25px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            margin-top: 30px;
-        }
-        
-        .stats-summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .stat-card {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1565c0;
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        
-        .calculation-box {
-            background: #f0f4f8;
-            border-left: 4px solid #1565c0;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .formula {
-            font-family: 'Courier New', monospace;
-            background: #e8f5e8;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            overflow-x: auto;
-        }
-        
-        .institution-header {
-            text-align: center;
+            color: #333;
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e3f2fd;
         }
-        
-        .institution-name {
-            font-size: 1.5em;
-            color: #1565c0;
-            font-weight: bold;
+        .copy-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
         }
-        
-        .study-details {
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 5px;
-        }
-        
-        .result-highlight {
-            background-color: #e3f2fd;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid #4caf50;
-            font-weight: bold;
-        }
-        
-        .spearman-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
-        }
-        
-        .spearman-value {
-            font-size: 2em;
-            font-weight: bold;
-            color: #1565c0;
-            margin: 10px 0;
+        .copy-btn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="institution-header">
-            <div class="institution-name">Institución Educativa "Nuestra Señora de Fátima"</div>
-            <div class="study-details">5to grado B - Análisis del impacto de tecnología en rendimiento académico en matemáticas</div>
-        </div>
-        
-        <h1>📊 Análisis Wilcoxon-Mann-Whitney</h1>
-        
-        <div class="section">
-            <h2><span class="icon">1</span>Tabla de Datos con Rangos</h2>
-            <p><strong>Descripción:</strong> Calificaciones de matemáticas ordenadas de menor a mayor con sus rangos asignados y grupo correspondiente (Alto Uso ≥4 horas/semana, Bajo Uso ≤2 horas/semana).</p>
+    <h1 class="title">Datos de Estudiantes - Encuesta Tecnología Educativa</h1>
+    
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Estudiante</th>
+                <th>Calificación en matemáticas (categoría)</th>
+                <th>Horas semanales de estudio con tecnología</th>
+                <th>Usa apps/plataformas educativas</th>
+                <th>Frecuencia de videos educativos</th>
+                <th>Dispositivo más usado para estudiar</th>
+                <th>¿La tecnología te ayuda a entender? (1-5)</th>
+                <th>¿Crees más uso de tecnología en clase?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>estudiante 1</td><td>10-15</td><td>4-6</td><td>Si</td><td>Nunca</td><td>Celular</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 2</td><td>15-20</td><td>4-6</td><td>No</td><td>Nunca</td><td>Celular</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 3</td><td>15-20</td><td>4-6</td><td>Si</td><td>Frecuentemente</td><td>Tablet</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 4</td><td>10-15</td><td>2-4</td><td>No</td><td>A veces</td><td>Celular</td><td>3</td><td>Si</td></tr>
+            <tr><td>estudiante 5</td><td>5-10</td><td>0-2</td><td>No</td><td>Frecuentemente</td><td>Laptop</td><td>5</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 6</td><td>5-10</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Laptop</td><td>3</td><td>Si</td></tr>
+            <tr><td>estudiante 7</td><td>5-10</td><td>2-4</td><td>Si</td><td>A veces</td><td>Celular</td><td>4</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 8</td><td>15-20</td><td>0-2</td><td>No</td><td>A veces</td><td>Ninguno</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 9</td><td>10-15</td><td>2-4</td><td>No</td><td>Frecuentemente</td><td>Ninguno</td><td>3</td><td>No</td></tr>
+            <tr><td>estudiante 10</td><td>15-20</td><td>0-2</td><td>No</td><td>A veces</td><td>Celular</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 11</td><td>0-5</td><td>4-6</td><td>No</td><td>Nunca</td><td>Celular</td><td>3</td><td>Si</td></tr>
+            <tr><td>estudiante 12</td><td>15-20</td><td>2-4</td><td>Si</td><td>A veces</td><td>Celular</td><td>2</td><td>Si</td></tr>
+            <tr><td>estudiante 13</td><td>15-20</td><td>2-4</td><td>Si</td><td>A veces</td><td>Tablet</td><td>3</td><td>Si</td></tr>
+            <tr><td>estudiante 14</td><td>5-10</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Celular</td><td>3</td><td>No</td></tr>
+            <tr><td>estudiante 15</td><td>15-20</td><td>2-4</td><td>No</td><td>Siempre</td><td>Laptop</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 16</td><td>5-10</td><td>2-4</td><td>Si</td><td>Frecuentemente</td><td>Laptop</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 17</td><td>10-15</td><td>0-2</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 18</td><td>10-15</td><td>4-6</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 19</td><td>10-15</td><td>4-6</td><td>Si</td><td>A veces</td><td>Tablet</td><td>2</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 20</td><td>10-15</td><td>4-6</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 21</td><td>10-15</td><td>4-6</td><td>No</td><td>Frecuentemente</td><td>Celular</td><td>3</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 22</td><td>5-10</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Celular</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 23</td><td>10-15</td><td>4-6</td><td>No</td><td>Siempre</td><td>Ninguno</td><td>1</td><td>Si</td></tr>
+            <tr><td>estudiante 24</td><td>10-15</td><td>0-2</td><td>Si</td><td>A veces</td><td>Celular</td><td>1</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 25</td><td>10-15</td><td>0-2</td><td>Si</td><td>A veces</td><td>Laptop</td><td>2</td><td>Si</td></tr>
+            <tr><td>estudiante 26</td><td>15-20</td><td>0-2</td><td>No</td><td>A veces</td><td>Laptop</td><td>2</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 27</td><td>5-10</td><td>2-4</td><td>No</td><td>A veces</td><td>Celular</td><td>3</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 28</td><td>10-15</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Laptop</td><td>4</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 29</td><td>10-15</td><td>2-4</td><td>No</td><td>Siempre</td><td>Celular</td><td>2</td><td>Si</td></tr>
+            <tr><td>estudiante 30</td><td>10-15</td><td>4-6</td><td>Si</td><td>Nunca</td><td>Laptop</td><td>2</td><td>Si</td></tr>
+            <tr><td>estudiante 31</td><td>5-10</td><td>2-4</td><td>Si</td><td>Frecuentemente</td><td>Laptop</td><td>4</td><td>Indiferente</td></tr>
+            <tr><td>estudiante 32</td><td>5-10</td><td>2-4</td><td>Si</td><td>A veces</td><td>Laptop</td><td>4</td><td>Si</td></tr>
+            <tr><td>estudiante 33</td><td>5-10</td><td>2-4</td><td>Si</td><td>A veces</td><td>Laptop</td><td>1</td><td>Si</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        function copyTable() {
+            const table = document.getElementById('dataTable');
+            let text = '';
             
-            <table id="tabla-rangos">
-                <thead>
-                    <tr>
-                        <th>Posición</th>
-                        <th>Calificación</th>
-                        <th>Grupo</th>
-                        <th>Rango</th>
-                        <th>Observaciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="grupo-bajo">
-                        <td>1</td>
-                        <td>2.5</td>
-                        <td>Bajo Uso</td>
-                        <td>1</td>
-                        <td></td>
-                    </tr>
-                    <tr class="grupo-bajo">
-                        <td>2</td>
-                        <td>5.0</td>
-                        <td>Bajo Uso</td>
-                        <td>2</td>
-                        <td></td>
-                    </tr>
-                    <tr class="grupo-bajo">
-                        <td>3</td>
-                        <td>7.5</td>
-                        <td>Bajo Uso</td>
-                        <td>3.5</td>
-                        <td>Empate (2 valores)</td>
-                    </tr>
-                    <tr class="grupo-alto">
-                        <td>4</td>
-                        <td>7.5</td>
-                        <td>Alto Uso</td>
-                        <td>3.5</td>
-                        <td>Empate (2 valores)</td>
-                    </tr>
-                    <tr class="grupo-bajo">
-                        <td>5</td>
-                        <td>10.0</td>
-                        <td>Bajo Uso</td>
-                        <td>5.5</td>
-                        <td>Empate (2 valores)</td>
-                    </tr>
-                    <tr class="grupo-alto">
-                        <td>6</td>
-                        <td>10.0</td>
-                        <td>Alto Uso</td>
-                        <td>5.5</td>
-                        <td>Empate (2 valores)</td>
-                    </tr>
-                    <tr class="grupo-bajo">
-                        <td>7</td>
-                        <td>12.5</td>
-                        <td>Bajo Uso</td>
-                        <td>8.5</td>
-                        <td>Empate (2 valores)</td>
-                    </tr>
-                    <tr class="grupo-alto">
-                        <td>8</td>
-                        <td>12.5</td>
-                        <td>Alto Uso</td>
-                        <td>8.5</td>
-                        <td>Empate (2 valores)</td>
-                    </tr>
-                    <tr class="grupo-alto">
-                        <td>9</td>
-                        <td>15.0</td>
-                        <td>Alto Uso</td>
-                        <td>12</td>
-                        <td></td>
-                    </tr>
-                    <tr class="grupo-alto">
-                        <td>10</td>
-                        <td>17.5</td>
-                        <td>Alto Uso</td>
-                        <td>15</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="section">
-            <h2><span class="icon">2</span>Resumen de Rangos por Grupo</h2>
+            // Copiar encabezados
+            const headers = table.querySelectorAll('th');
+            const headerTexts = Array.from(headers).map(th => th.textContent);
+            text += headerTexts.join('\t') + '\n';
             
-            <div class="stats-summary">
-                <div class="stat-card">
-                    <div class="stat-value">108</div>
-                    <div class="stat-label">Suma Rangos - Alto Uso</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">45</div>
-                    <div class="stat-label">Suma Rangos - Bajo Uso</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">10</div>
-                    <div class="stat-label">n₁ (Alto Uso)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">7</div>
-                    <div class="stat-label">n₂ (Bajo Uso)</div>
-                </div>
-            </div>
+            // Copiar filas de datos
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const rowTexts = Array.from(cells).map(td => td.textContent);
+                text += rowTexts.join('\t') + '\n';
+            });
             
-            <table id="tabla-resumen">
-                <thead>
-                    <tr>
-                        <th>Grupo</th>
-                        <th>N</th>
-                        <th>Suma de Rangos</th>
-                        <th>Rango Promedio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="grupo-alto">
-                        <td>Alto Uso</td>
-                        <td>10</td>
-                        <td>108</td>
-                        <td>10.8</td>
-                    </tr>
-                    <tr class="grupo-bajo">
-                        <td>Bajo Uso</td>
-                        <td>7</td>
-                        <td>45</td>
-                        <td>6.43</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="section">
-            <h2><span class="icon">3</span>Cálculos del Estadístico U</h2>
-            
-            <div class="calculation-box">
-                <h4>Fórmulas utilizadas:</h4>
-                <div class="formula">
-                    U₁ = n₁ × n₂ + n₁(n₁+1)/2 - R₁
-                </div>
-                <div class="formula">
-                    U₂ = n₁ × n₂ + n₂(n₂+1)/2 - R₂
-                </div>
-                <div class="formula">
-                    U = min(U₁, U₂)
-                </div>
-            </div>
-            
-            <table id="tabla-calculos">
-                <thead>
-                    <tr>
-                        <th>Estadístico</th>
-                        <th>Cálculo</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>U₁</td>
-                        <td>10 × 7 + 10(11)/2 - 108</td>
-                        <td>17</td>
-                    </tr>
-                    <tr>
-                        <td>U₂</td>
-                        <td>10 × 7 + 7(8)/2 - 45</td>
-                        <td>53</td>
-                    </tr>
-                    <tr style="font-weight: bold; background-color: #e3f2fd;">
-                        <td>U (mínimo)</td>
-                        <td>min(17, 53)</td>
-                        <td>17</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="stats-summary">
-                <div class="stat-card">
-                    <div class="stat-value">17</div>
-                    <div class="stat-label">Estadístico U</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">15</div>
-                    <div class="stat-label">Valor Crítico (α=0.05)</div>
-                </div>
-                <div class="stat-card" style="background-color: #e8f5e8;">
-                    <div class="stat-value">Rechazar H₀</div>
-                    <div class="stat-label">Decisión</div>
-                </div>
-            </div>
-            
-            <div class="result-highlight">
-                <p>U calculado (17) > U crítico (15)</p>
-                <p>Conclusión: Se rechaza la hipótesis nula (H₀). Existen diferencias significativas entre los grupos.</p>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2><span class="icon">4</span>Correlación de Spearman</h2>
-            
-            <div class="spearman-card">
-                <h3>Coeficiente de correlación de Spearman</h3>
-                <div class="spearman-value">ρ = 0.68</div>
-                <p>Interpretación: Correlación moderada-fuerte positiva entre horas de uso de tecnología y rendimiento académico.</p>
-                <p>El análisis sugiere que a mayor uso de tecnología, mejores calificaciones en matemáticas.</p>
-            </div>
-        </div>
-        
-    </div>
+            // Copiar al portapapeles
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ ¡Copiado! Ahora pégalo en Excel';
+                btn.style.backgroundColor = '#28a745';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '#4CAF50';
+                }, 3000);
+            }).catch(err => {
+                alert('Error al copiar. Intenta seleccionar manualmente la tabla y copiar con Ctrl+C');
+            });
+        }
+    </script>
 </body>
 </html>
