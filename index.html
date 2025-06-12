@@ -3,141 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos de Estudiantes</title>
+    <title>Análisis Tecnología Educativa</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(37, 150, 190, 0.1);
+            border: 1px solid rgba(37, 150, 190, 0.1);
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        .title {
+        
+        h1 {
+            color: #2596be;
             text-align: center;
-            color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(37, 150, 190, 0.2);
+            background: linear-gradient(135deg, #2596be, #1a7ba8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
         }
-        .copy-btn {
-            background-color: #4CAF50;
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #2596be, #1a7ba8);
+            border-radius: 2px;
+        }
+        
+        h2 {
+            color: #2596be;
+            margin: 50px 0 30px 0;
+            padding: 15px 25px;
+            font-size: 1.5em;
+            font-weight: 600;
+            background: linear-gradient(135deg, rgba(37, 150, 190, 0.1), rgba(37, 150, 190, 0.05));
+            border-left: 5px solid #2596be;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 4px 10px rgba(37, 150, 190, 0.1);
+        }
+        
+        h3 {
+            color: #1a7ba8;
+            margin: 25px 0 15px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(37, 150, 190, 0.15);
+            background: white;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #2596be, #1a7ba8);
             color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 10px;
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
-        .copy-btn:hover {
-            background-color: #45a049;
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(37, 150, 190, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(37, 150, 190, 0.02);
+        }
+        
+        tr:hover {
+            background-color: rgba(37, 150, 190, 0.08);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 150, 190, 0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(37, 150, 190, 0.05));
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(37, 150, 190, 0.12);
+            border: 1px solid rgba(37, 150, 190, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #2596be, #1a7ba8);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(37, 150, 190, 0.2);
+        }
+        
+        .stat-title {
+            font-weight: 700;
+            color: #2596be;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .interpretation {
+            background: linear-gradient(135deg, rgba(37, 150, 190, 0.08), rgba(37, 150, 190, 0.04));
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 5px solid #2596be;
+            box-shadow: 0 8px 25px rgba(37, 150, 190, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #2596be, #1a7ba8);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            display: inline-block;
+            margin: 0 2px;
+            box-shadow: 0 2px 6px rgba(37, 150, 190, 0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(37, 150, 190, 0.1), rgba(37, 150, 190, 0.05));
+            border-radius: 15px;
+            color: #2596be;
+            font-weight: 600;
+            border: 1px solid rgba(37, 150, 190, 0.2);
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            padding: 20px 0;
+        }
+        
+        /* Efectos de animación */
+        .container {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section {
+            animation: slideIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(37, 150, 190, 0.1);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #2596be, #1a7ba8);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #1a7ba8, #2596be);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.3em;
+                padding: 12px 20px;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 class="title">Datos de Estudiantes - Encuesta Tecnología Educativa</h1>
-    
-    <table id="dataTable">
-        <thead>
-            <tr>
-                <th>Estudiante</th>
-                <th>Calificación en matemáticas (categoría)</th>
-                <th>Horas semanales de estudio con tecnología</th>
-                <th>Usa apps/plataformas educativas</th>
-                <th>Frecuencia de videos educativos</th>
-                <th>Dispositivo más usado para estudiar</th>
-                <th>¿La tecnología te ayuda a entender? (1-5)</th>
-                <th>¿Crees más uso de tecnología en clase?</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>estudiante 1</td><td>10-15</td><td>4-6</td><td>Si</td><td>Nunca</td><td>Celular</td><td>1</td><td>Si</td></tr>
-            <tr><td>estudiante 2</td><td>15-20</td><td>4-6</td><td>No</td><td>Nunca</td><td>Celular</td><td>1</td><td>Si</td></tr>
-            <tr><td>estudiante 3</td><td>15-20</td><td>4-6</td><td>Si</td><td>Frecuentemente</td><td>Tablet</td><td>4</td><td>Si</td></tr>
-            <tr><td>estudiante 4</td><td>10-15</td><td>2-4</td><td>No</td><td>A veces</td><td>Celular</td><td>3</td><td>Si</td></tr>
-            <tr><td>estudiante 5</td><td>5-10</td><td>0-2</td><td>No</td><td>Frecuentemente</td><td>Laptop</td><td>5</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 6</td><td>5-10</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Laptop</td><td>3</td><td>Si</td></tr>
-            <tr><td>estudiante 7</td><td>5-10</td><td>2-4</td><td>Si</td><td>A veces</td><td>Celular</td><td>4</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 8</td><td>15-20</td><td>0-2</td><td>No</td><td>A veces</td><td>Ninguno</td><td>4</td><td>Si</td></tr>
-            <tr><td>estudiante 9</td><td>10-15</td><td>2-4</td><td>No</td><td>Frecuentemente</td><td>Ninguno</td><td>3</td><td>No</td></tr>
-            <tr><td>estudiante 10</td><td>15-20</td><td>0-2</td><td>No</td><td>A veces</td><td>Celular</td><td>4</td><td>Si</td></tr>
-            <tr><td>estudiante 11</td><td>0-5</td><td>4-6</td><td>No</td><td>Nunca</td><td>Celular</td><td>3</td><td>Si</td></tr>
-            <tr><td>estudiante 12</td><td>15-20</td><td>2-4</td><td>Si</td><td>A veces</td><td>Celular</td><td>2</td><td>Si</td></tr>
-            <tr><td>estudiante 13</td><td>15-20</td><td>2-4</td><td>Si</td><td>A veces</td><td>Tablet</td><td>3</td><td>Si</td></tr>
-            <tr><td>estudiante 14</td><td>5-10</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Celular</td><td>3</td><td>No</td></tr>
-            <tr><td>estudiante 15</td><td>15-20</td><td>2-4</td><td>No</td><td>Siempre</td><td>Laptop</td><td>4</td><td>Si</td></tr>
-            <tr><td>estudiante 16</td><td>5-10</td><td>2-4</td><td>Si</td><td>Frecuentemente</td><td>Laptop</td><td>4</td><td>Si</td></tr>
-            <tr><td>estudiante 17</td><td>10-15</td><td>0-2</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Si</td></tr>
-            <tr><td>estudiante 18</td><td>10-15</td><td>4-6</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Si</td></tr>
-            <tr><td>estudiante 19</td><td>10-15</td><td>4-6</td><td>Si</td><td>A veces</td><td>Tablet</td><td>2</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 20</td><td>10-15</td><td>4-6</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 21</td><td>10-15</td><td>4-6</td><td>No</td><td>Frecuentemente</td><td>Celular</td><td>3</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 22</td><td>5-10</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Celular</td><td>4</td><td>Si</td></tr>
-            <tr><td>estudiante 23</td><td>10-15</td><td>4-6</td><td>No</td><td>Siempre</td><td>Ninguno</td><td>1</td><td>Si</td></tr>
-            <tr><td>estudiante 24</td><td>10-15</td><td>0-2</td><td>Si</td><td>A veces</td><td>Celular</td><td>1</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 25</td><td>10-15</td><td>0-2</td><td>Si</td><td>A veces</td><td>Laptop</td><td>2</td><td>Si</td></tr>
-            <tr><td>estudiante 26</td><td>15-20</td><td>0-2</td><td>No</td><td>A veces</td><td>Laptop</td><td>2</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 27</td><td>5-10</td><td>2-4</td><td>No</td><td>A veces</td><td>Celular</td><td>3</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 28</td><td>10-15</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Laptop</td><td>4</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 29</td><td>10-15</td><td>2-4</td><td>No</td><td>Siempre</td><td>Celular</td><td>2</td><td>Si</td></tr>
-            <tr><td>estudiante 30</td><td>10-15</td><td>4-6</td><td>Si</td><td>Nunca</td><td>Laptop</td><td>2</td><td>Si</td></tr>
-            <tr><td>estudiante 31</td><td>5-10</td><td>2-4</td><td>Si</td><td>Frecuentemente</td><td>Laptop</td><td>4</td><td>Indiferente</td></tr>
-            <tr><td>estudiante 32</td><td>5-10</td><td>2-4</td><td>Si</td><td>A veces</td><td>Laptop</td><td>4</td><td>Si</td></tr>
-            <tr><td>estudiante 33</td><td>5-10</td><td>2-4</td><td>Si</td><td>A veces</td><td>Laptop</td><td>1</td><td>Si</td></tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>📊 ESTADÍSTICA DESCRIPTIVA - TECNOLOGÍA EDUCATIVA</h1>
+        
+        <div class="section">
+            <h2>📋 Datos Recopilados de 33 Estudiantes</h2>
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Estudiante</th>
+                        <th>Matemáticas</th>
+                        <th>Horas Tecnología</th>
+                        <th>Usa Apps</th>
+                        <th>Videos Educativos</th>
+                        <th>Dispositivo</th>
+                        <th>Ayuda Tecnología (1-5)</th>
+                        <th>Más Tecnología en Clase</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>10-15</td><td>4-6</td><td>Si</td><td>Nunca</td><td>Celular</td><td>1</td><td>Si</td></tr>
+                    <tr><td>2</td><td>15-20</td><td>4-6</td><td>No</td><td>Nunca</td><td>Celular</td><td>1</td><td>Si</td></tr>
+                    <tr><td>3</td><td>15-20</td><td>4-6</td><td>Si</td><td>Frecuentemente</td><td>Tablet</td><td>4</td><td>Si</td></tr>
+                    <tr><td>4</td><td>10-15</td><td>2-4</td><td>No</td><td>A veces</td><td>Celular</td><td>3</td><td>Si</td></tr>
+                    <tr><td>5</td><td>5-10</td><td>0-2</td><td>No</td><td>Frecuentemente</td><td>Laptop</td><td>5</td><td>Indiferente</td></tr>
+                    <tr><td>6</td><td>5-10</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Laptop</td><td>3</td><td>Si</td></tr>
+                    <tr><td>7</td><td>5-10</td><td>2-4</td><td>Si</td><td>A veces</td><td>Celular</td><td>4</td><td>Indiferente</td></tr>
+                    <tr><td>8</td><td>15-20</td><td>0-2</td><td>No</td><td>A veces</td><td>Ninguno</td><td>4</td><td>Si</td></tr>
+                    <tr><td>9</td><td>10-15</td><td>2-4</td><td>No</td><td>Frecuentemente</td><td>Ninguno</td><td>3</td><td>No</td></tr>
+                    <tr><td>10</td><td>15-20</td><td>0-2</td><td>No</td><td>A veces</td><td>Celular</td><td>4</td><td>Si</td></tr>
+                    <tr><td>11</td><td>0-5</td><td>4-6</td><td>No</td><td>Nunca</td><td>Celular</td><td>3</td><td>Si</td></tr>
+                    <tr><td>12</td><td>15-20</td><td>2-4</td><td>Si</td><td>A veces</td><td>Celular</td><td>2</td><td>Si</td></tr>
+                    <tr><td>13</td><td>15-20</td><td>2-4</td><td>Si</td><td>A veces</td><td>Tablet</td><td>3</td><td>Si</td></tr>
+                    <tr><td>14</td><td>5-10</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Celular</td><td>3</td><td>No</td></tr>
+                    <tr><td>15</td><td>15-20</td><td>2-4</td><td>No</td><td>Siempre</td><td>Laptop</td><td>4</td><td>Si</td></tr>
+                    <tr><td>16</td><td>5-10</td><td>2-4</td><td>Si</td><td>Frecuentemente</td><td>Laptop</td><td>4</td><td>Si</td></tr>
+                    <tr><td>17</td><td>10-15</td><td>0-2</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Si</td></tr>
+                    <tr><td>18</td><td>10-15</td><td>4-6</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Si</td></tr>
+                    <tr><td>19</td><td>10-15</td><td>4-6</td><td>Si</td><td>A veces</td><td>Tablet</td><td>2</td><td>Indiferente</td></tr>
+                    <tr><td>20</td><td>10-15</td><td>4-6</td><td>Si</td><td>Siempre</td><td>Celular</td><td>1</td><td>Indiferente</td></tr>
+                    <tr><td>21</td><td>10-15</td><td>4-6</td><td>No</td><td>Frecuentemente</td><td>Celular</td><td>3</td><td>Indiferente</td></tr>
+                    <tr><td>22</td><td>5-10</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Celular</td><td>4</td><td>Si</td></tr>
+                    <tr><td>23</td><td>10-15</td><td>4-6</td><td>No</td><td>Siempre</td><td>Ninguno</td><td>1</td><td>Si</td></tr>
+                    <tr><td>24</td><td>10-15</td><td>0-2</td><td>Si</td><td>A veces</td><td>Celular</td><td>1</td><td>Indiferente</td></tr>
+                    <tr><td>25</td><td>10-15</td><td>0-2</td><td>Si</td><td>A veces</td><td>Laptop</td><td>2</td><td>Si</td></tr>
+                    <tr><td>26</td><td>15-20</td><td>0-2</td><td>No</td><td>A veces</td><td>Laptop</td><td>2</td><td>Indiferente</td></tr>
+                    <tr><td>27</td><td>5-10</td><td>2-4</td><td>No</td><td>A veces</td><td>Celular</td><td>3</td><td>Indiferente</td></tr>
+                    <tr><td>28</td><td>10-15</td><td>2-4</td><td>Si</td><td>Siempre</td><td>Laptop</td><td>4</td><td>Indiferente</td></tr>
+                    <tr><td>29</td><td>10-15</td><td>2-4</td><td>No</td><td>Siempre</td><td>Celular</td><td>2</td><td>Si</td></tr>
+                    <tr><td>30</td><td>10-15</td><td>4-6</td><td>Si</td><td>Nunca</td><td>Laptop</td><td>2</td><td>Si</td></tr>
+                    <tr><td>31</td><td>5-10</td><td>2-4</td><td>Si</td><td>Frecuentemente</td><td>Laptop</td><td>4</td><td>Indiferente</td></tr>
+                    <tr><td>32</td><td>5-10</td><td>2-4</td><td>Si</td><td>A veces</td><td>Laptop</td><td>4</td><td>Si</td></tr>
+                    <tr><td>33</td><td>5-10</td><td>2-4</td><td>Si</td><td>A veces</td><td>Laptop</td><td>1</td><td>Si</td></tr>
+                </tbody>
+            </table>
+        </div>
 
-    <script>
-        function copyTable() {
-            const table = document.getElementById('dataTable');
-            let text = '';
+        <div class="section">
+            <h2>📈 RENDIMIENTO ACADÉMICO EN MATEMÁTICAS</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rango</th>
+                        <th>Promedio</th>
+                        <th>Cantidad</th>
+                        <th>Porcentaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0-5</td><td>2.5</td><td>1</td><td>3.0%</td></tr>
+                    <tr><td>5-10</td><td>7.5</td><td>10</td><td>30.3%</td></tr>
+                    <tr><td>10-15</td><td>12.5</td><td>14</td><td>42.4%</td></tr>
+                    <tr><td>15-20</td><td>17.5</td><td>8</td><td>24.2%</td></tr>
+                    <tr><td><strong>Total</strong></td><td></td><td><strong>33</strong></td><td><strong>100%</strong></td></tr>
+                </tbody>
+            </table>
             
-            // Copiar encabezados
-            const headers = table.querySelectorAll('th');
-            const headerTexts = Array.from(headers).map(th => th.textContent);
-            text += headerTexts.join('\t') + '\n';
+            <div class="interpretation">
+                <h3>💡 Interpretación</h3>
+                <p>El <span class="highlight">42.4%</span> de los estudiantes se encuentra en el rango de <span class="highlight">10-15 puntos</span>, seguido por un <span class="highlight">30.3%</span> en el rango de <span class="highlight">5-10 puntos</span>. Solo un <span class="highlight">3%</span> tiene calificaciones bajas (0-5), mientras que el <span class="highlight">24.2%</span> alcanza el rango superior (15-20). Esto muestra una distribución normal con mayoría en el rango medio.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⏰ HORAS DE ESTUDIO CON TECNOLOGÍA</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rango (horas/semana)</th>
+                        <th>Promedio</th>
+                        <th>Cantidad</th>
+                        <th>Porcentaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0-2</td><td>1</td><td>7</td><td>21.2%</td></tr>
+                    <tr><td>2-4</td><td>3</td><td>16</td><td>48.5%</td></tr>
+                    <tr><td>4-6</td><td>5</td><td>10</td><td>30.3%</td></tr>
+                    <tr><td><strong>Total</strong></td><td></td><td><strong>33</strong></td><td><strong>100%</strong></td></tr>
+                </tbody>
+            </table>
             
-            // Copiar filas de datos
-            const rows = table.querySelectorAll('tbody tr');
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('td');
-                const rowTexts = Array.from(cells).map(td => td.textContent);
-                text += rowTexts.join('\t') + '\n';
-            });
+            <div class="interpretation">
+                <h3>💡 Interpretación</h3>
+                <p>Casi la mitad de los estudiantes (<span class="highlight">48.5%</span>) dedica entre <span class="highlight">2-4 horas semanales</span> al estudio con tecnología, mientras que un <span class="highlight">30.3%</span> invierte más tiempo (4-6 horas). Solo el <span class="highlight">21.2%</span> estudia menos de 2 horas con herramientas tecnológicas, indicando que la mayoría las incorpora regularmente en su rutina de aprendizaje.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📱 USO DE APLICACIONES/PLATAFORMAS EDUCATIVAS</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Respuesta</th>
+                        <th>Cantidad</th>
+                        <th>Porcentaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Sí utilizan</td><td>21</td><td>63.6%</td></tr>
+                    <tr><td>No utilizan</td><td>12</td><td>36.4%</td></tr>
+                    <tr><td><strong>Total</strong></td><td><strong>33</strong></td><td><strong>100%</strong></td></tr>
+                </tbody>
+            </table>
             
-            // Copiar al portapapeles
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = document.querySelector('.copy-btn');
-                const originalText = btn.textContent;
-                btn.textContent = '✅ ¡Copiado! Ahora pégalo en Excel';
-                btn.style.backgroundColor = '#28a745';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.backgroundColor = '#4CAF50';
-                }, 3000);
-            }).catch(err => {
-                alert('Error al copiar. Intenta seleccionar manualmente la tabla y copiar con Ctrl+C');
-            });
-        }
-    </script>
+            <div class="interpretation">
+                <h3>💡 Interpretación</h3>
+                <p>El <span class="highlight">63.6%</span> de los estudiantes usa aplicaciones o plataformas educativas, mientras que el <span class="highlight">36.4%</span> no las utiliza. Esto muestra una adopción significativa de herramientas digitales, aunque aún existe un grupo considerable que no las emplea en su proceso de aprendizaje.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎥 FRECUENCIA DE VIDEOS EDUCATIVOS</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Frecuencia</th>
+                        <th>Cantidad</th>
+                        <th>Porcentaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Siempre</td><td>11</td><td>33.3%</td></tr>
+                    <tr><td>Frecuentemente</td><td>5</td><td>15.2%</td></tr>
+                    <tr><td>A veces</td><td>14</td><td>42.4%</td></tr>
+                    <tr><td>Nunca</td><td>3</td><td>9.1%</td></tr>
+                    <tr><td><strong>Total</strong></td><td><strong>33</strong></td><td><strong>100%</strong></td></tr>
+                </tbody>
+            </table>
+            
+            <div class="interpretation">
+                <h3>💡 Interpretación</h3>
+                <p>Un <span class="highlight">42.4%</span> ve videos educativos <span class="highlight">a veces</span>, seguido por un <span class="highlight">33.3%</span> que <span class="highlight">siempre</span> los utiliza. Solo el <span class="highlight">9.1%</span> nunca recurre a este recurso. Los videos se han consolidado como un apoyo importante para el aprendizaje, especialmente en matemáticas.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💻 DISPOSITIVO MÁS USADO PARA ESTUDIAR</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dispositivo</th>
+                        <th>Cantidad</th>
+                        <th>Porcentaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Celular</td><td>18</td><td>54.5%</td></tr>
+                    <tr><td>Laptop</td><td>10</td><td>30.3%</td></tr>
+                    <tr><td>Tablet</td><td>3</td><td>9.1%</td></tr>
+                    <tr><td>Ninguno</td><td>2</td><td>6.1%</td></tr>
+                    <tr><td><strong>Total</strong></td><td><strong>33</strong></td><td><strong>100%</strong></td></tr>
+                </tbody>
+            </table>
+            
+            <div class="interpretation">
+                <h3>💡 Interpretación</h3>
+                <p>El <span class="highlight">54.5%</span> prefiere el <span class="highlight">celular</span> como dispositivo principal para estudiar, seguido por la <span class="highlight">laptop (30.3%)</span>. La portabilidad y accesibilidad de los smartphones los convierten en la herramienta dominante para el aprendizaje digital entre los estudiantes.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🏫 Institución Educativa "Nuestra Señora de Fátima" - 5to Grado B<br>
+            📊 Análisis realizado en junio 2023</p>
+        </div>
+    </div>
 </body>
 </html>
